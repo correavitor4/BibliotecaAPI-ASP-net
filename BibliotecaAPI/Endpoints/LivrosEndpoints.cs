@@ -45,6 +45,26 @@ namespace BibliotecaAPI.Endpoints
                 
 
             });
+
+            app.MapPut("/livros", async (GetConnection connectionGetter, Livros livro) =>
+             {
+                 using var con = await connectionGetter();
+                 if(livro is null)
+                 {
+
+                     return Results.BadRequest();
+                 }
+                 try
+                 {
+                     con.Update(livro);
+                     return Results.Ok();
+                 }
+                 catch (Exception ex)
+                 {
+                     System.Diagnostics.Debug.WriteLine(ex.ToString());
+                     return Results.StatusCode(statusCode:500);
+                 }
+             });
         }
     }
 }

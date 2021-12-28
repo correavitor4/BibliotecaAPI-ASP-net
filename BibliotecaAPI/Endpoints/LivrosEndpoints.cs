@@ -21,6 +21,20 @@ namespace BibliotecaAPI.Endpoints
                 return Results.Ok(livros);
             });
 
+            app.MapGet("/livros/{id}", async (GetConnection connectionGetter,int id) =>
+            {
+                using var con = await connectionGetter();
+                
+                var livros = con.Get<Livros>(id);
+                if (livros is null)
+                {
+                    return Results.NotFound();
+                }
+
+                return Results.Ok(livros);
+            });
+
+
             //O connectionGetter deve ser uma variável que busca a conexão
             app.MapPost("/livros", async (GetConnection connectionGetter, Livros livro) =>
             {

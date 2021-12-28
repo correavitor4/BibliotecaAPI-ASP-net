@@ -79,6 +79,28 @@ namespace BibliotecaAPI.Endpoints
                      return Results.StatusCode(statusCode:500);
                  }
              });
+
+            app.MapDelete("/livros/{id}", async(GetConnection connectionGetter, int id) =>
+            {
+                using var con = await connectionGetter();
+                var deleted = con.Get<Livros>(id);
+                if (deleted is null)
+                {
+                    return Results.NotFound();
+                }
+
+                try
+                {
+                    
+                    con.Delete(deleted);
+                    return Results.Ok();
+                }
+                catch(Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.ToString());
+                    return Results.Ok(deleted);
+                }
+            });
         }
     }
 }

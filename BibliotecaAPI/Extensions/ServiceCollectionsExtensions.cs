@@ -1,5 +1,5 @@
 ﻿using System.Data.SqlClient;
-using static BibliotecaAPI.Data.LivrosContext;
+using static BibliotecaAPI.Data.BancoContext;
 
 namespace BibliotecaAPI.Extensions
 {

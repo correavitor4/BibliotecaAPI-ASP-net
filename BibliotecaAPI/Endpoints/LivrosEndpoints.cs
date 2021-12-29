@@ -1,6 +1,7 @@
 ﻿using BibliotecaAPI.Data;
 using Dapper.Contrib.Extensions;
-using static BibliotecaAPI.Data.LivrosContext;
+using static BibliotecaAPI.Data.BancoContext;
+
 
 namespace BibliotecaAPI.Endpoints
 {
@@ -48,7 +49,7 @@ namespace BibliotecaAPI.Endpoints
                 
                 try
                 {
-                    var id = con.Insert(livro);
+                    var id = con.Insert<Livros>(livro);
                     return Results.Created($"/livros/{id}", livro);
                 }
                 catch(Exception ex)

@@ -9,7 +9,8 @@ namespace BibliotecaAPI.Data
         System.String Edicao, 
         System.Int32 Ano_de_publicacao, 
         System.String Assunto, 
-        System.Int32 Id
+        System.Int32 Id,
+        System.Int32 Autor
     );
     
 }

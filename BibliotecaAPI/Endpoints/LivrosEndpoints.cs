@@ -71,7 +71,7 @@ namespace BibliotecaAPI.Endpoints
                  }
                  try
                  {
-                     con.Update(livro);
+                     con.Update<Livros>(livro);
                      return Results.Ok();
                  }
                  catch (Exception ex)

@@ -46,6 +46,14 @@ namespace BibliotecaAPI.Endpoints
                 {
                     return Results.BadRequest();
                 }
+
+                var idAutor = livro.Autor;
+
+                var autor = con.Get<Autores>(idAutor);
+                if(autor is null)
+                {
+                    return Results.BadRequest("O id do autor não é válido");
+                }
                 
                 try
                 {

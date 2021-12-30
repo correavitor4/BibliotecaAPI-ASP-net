@@ -8,6 +8,7 @@ var app = builder.Build();
 
 app.MapLivrosEndpoints();
 app.MapAutoresEndpoints();
+app.MapProfessoresEndPoints();
 
 //app.MapGet("/", () => "Hello World!");
 

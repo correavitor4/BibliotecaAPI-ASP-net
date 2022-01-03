@@ -8,7 +8,7 @@ namespace BibliotecaAPI.Endpoints
     {
         public static void MapEmprestimosDeAlunosEndPoints(this WebApplication app)
         {
-            app.MapGet("/emprestimos", async(GetConnection connectionGetter) =>
+            app.MapGet("/emprestimosDeAlunos", async(GetConnection connectionGetter) =>
             {
                 using var con = await connectionGetter();
                 try
@@ -27,7 +27,7 @@ namespace BibliotecaAPI.Endpoints
                 }
             });
 
-            app.MapPost("/emprestimos", async (GetConnection connectionGetter, EmprestimosDeAlunos emprestimo) =>
+            app.MapPost("/emprestimosDeAlunos", async (GetConnection connectionGetter, EmprestimosDeAlunos emprestimo) =>
             {
                 using var con = await connectionGetter();
                 
@@ -37,7 +37,7 @@ namespace BibliotecaAPI.Endpoints
                 {
                     var id=con.Insert<EmprestimosDeAlunos>(emprestimo);
                     
-                    return Results.Created($"/emprestimos/{id}",id);
+                    return Results.Created($"/emprestimosDeAlunos/{id}",id);
                 }
                 catch (Exception ex)
                 {
@@ -46,7 +46,7 @@ namespace BibliotecaAPI.Endpoints
                 }
             });
 
-            app.MapGet("/emprestimos/{id}", async (GetConnection connectionGetter,int id) =>
+            app.MapGet("/emprestimosDeAlunos/{id}", async (GetConnection connectionGetter,int id) =>
             {
                 using var con = await connectionGetter();
                 try
@@ -66,7 +66,7 @@ namespace BibliotecaAPI.Endpoints
                 
             });
 
-            app.MapPut("/emprestimos", async(GetConnection connectionGetter, EmprestimosDeAlunos emp) =>
+            app.MapPut("/emprestimosDeAlunos", async(GetConnection connectionGetter, EmprestimosDeAlunos emp) =>
             {
                 using var con = await connectionGetter();
                 if(emp is null)
@@ -91,7 +91,7 @@ namespace BibliotecaAPI.Endpoints
                 }
             });
 
-            app.MapDelete("/emprestimos/{id}", async (GetConnection connectionGetter,int id) =>
+            app.MapDelete("/emprestimosDeAlunos/{id}", async (GetConnection connectionGetter,int id) =>
             {
                 using var con = await connectionGetter();
 

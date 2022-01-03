@@ -10,6 +10,7 @@ app.MapLivrosEndpoints();
 app.MapAutoresEndpoints();
 app.MapProfessoresEndPoints();
 app.MapAlunosEndpoints();
+app.MapEmprestimosDeAlunosEndPoints();
 
 //app.MapGet("/", () => "Hello World!");
 

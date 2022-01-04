@@ -16,7 +16,7 @@ namespace BibliotecaAPI.Endpoints
                     var emprestimos = con.GetAll<EmprestimosProfessores>().ToList();
                     if(emprestimos is null)
                     {
-                        return Results.NotFound();
+                        return Results.NotFound("Não foi encontrado nenhum empréstimos a professor");
                     }
                     return Results.Ok(emprestimos);
                 }
@@ -36,7 +36,7 @@ namespace BibliotecaAPI.Endpoints
                     var emprestimo = con.Get<EmprestimosProfessores>(id);
                     if(emprestimo is null)
                     {
-                        return Results.NotFound("Nenhum livro com esse Id foi encontrado.");
+                        return Results.NotFound("Não foi encontrado nenhum empréstimos a professor que possua esse Id");
                     }
                     return Results.Ok(emprestimo);
                 }
@@ -73,7 +73,7 @@ namespace BibliotecaAPI.Endpoints
 
                 if(emprestimo is null)
                 {
-                    return Results.BadRequest("Você não forneceu nenhum objeto para sser atualizado");
+                    return Results.BadRequest("Você não forneceu nenhum objeto para ser atualizado");
                 }
                 
                 /*try

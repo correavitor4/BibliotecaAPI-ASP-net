@@ -16,7 +16,7 @@ namespace BibliotecaAPI.Endpoints
                     var emps = con.GetAll<EmprestimosDeAlunos>().ToList();
                     if(emps is null)
                     {
-                        return Results.NotFound();
+                        return Results.NotFound("Não foi encontrado nenhum emprestimo");
                     }
                     return Results.Ok(emps);
                 }
@@ -26,6 +26,8 @@ namespace BibliotecaAPI.Endpoints
                     return Results.StatusCode(500);
                 }
             });
+
+            
 
             app.MapPost("/emprestimosDeAlunos", async (GetConnection connectionGetter, EmprestimosDeAlunos emprestimo) =>
             {
@@ -115,7 +117,7 @@ namespace BibliotecaAPI.Endpoints
                 try
                 {
                     var response = con.Delete<EmprestimosDeAlunos>(emprestimo);
-                    return Results.Ok(response);
+                    return Results.Ok("Deletado com sucesso");
                 }
                 catch (Exception ex)
                 {

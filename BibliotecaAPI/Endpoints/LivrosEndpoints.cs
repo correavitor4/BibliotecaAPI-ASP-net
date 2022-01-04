@@ -16,7 +16,7 @@ namespace BibliotecaAPI.Endpoints
                 var livros = con.GetAll<Livros>().ToList();
                 if(livros is null)
                 {
-                    return Results.NotFound();
+                    return Results.NotFound("Nenhum livro foi encontrado");
                 }
                 
                 return Results.Ok(livros);
@@ -29,7 +29,7 @@ namespace BibliotecaAPI.Endpoints
                 var livros = con.Get<Livros>(id);
                 if (livros is null)
                 {
-                    return Results.NotFound();
+                    return Results.NotFound("Não foi encontrado nenhum livro com esse Id");
                 }
 
                 return Results.Ok(livros);
@@ -44,7 +44,7 @@ namespace BibliotecaAPI.Endpoints
                 using var con = await connectionGetter();
                 if (livro is null)
                 {
-                    return Results.BadRequest();
+                    return Results.BadRequest("Não foi passado nenhum livro ou o livro foi passado incorretamente");
                 }
 
                 var idAutor = livro.Autor;
@@ -75,7 +75,7 @@ namespace BibliotecaAPI.Endpoints
                  if(livro is null)
                  {
 
-                     return Results.BadRequest();
+                     return Results.BadRequest("Não foi fornecido nenhum livro");
                  }
                  try
                  {
@@ -92,10 +92,15 @@ namespace BibliotecaAPI.Endpoints
             app.MapDelete("/livros/{id}", async(GetConnection connectionGetter, int id) =>
             {
                 using var con = await connectionGetter();
+                /*if(id is null)
+                {
+                    return Results.BadRequest("Não foi fornecido nenhum id");
+                }*/
                 var deleted = con.Get<Livros>(id);
+                
                 if (deleted is null)
                 {
-                    return Results.NotFound();
+                    return Results.NotFound("Não foi encontrado nenhum registro de livro com esse Id");
                 }
 
                 try

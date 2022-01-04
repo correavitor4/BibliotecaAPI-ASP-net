@@ -26,7 +26,7 @@ namespace BibliotecaAPI.Endpoints
                 
                 if(autores is null)
                 {
-                    return Results.NotFound();
+                    return Results.NotFound("Não foi encontrado nenhum autor");
 
                 }
                 return Results.Ok(autores);
@@ -41,7 +41,7 @@ namespace BibliotecaAPI.Endpoints
                     autor = con.Get<Autores>(id);
                     if(autor is null)
                     {
-                        return Results.NotFound();
+                        return Results.NotFound("Não foi encontrado nenhum autor correspondente ao Id fornecido na URL");
                     }
                 }
                 catch(Exception ex)
@@ -57,7 +57,7 @@ namespace BibliotecaAPI.Endpoints
                 using var con = await connectionGetter();
                 if(autor is null)
                 {
-                    return Results.BadRequest();
+                    return Results.BadRequest("Não foi fornecido nenhum autor");
                 }
                 try
                 {
@@ -76,7 +76,7 @@ namespace BibliotecaAPI.Endpoints
                 using var con = await connectionGetter();
                 if(autor is null)
                 {
-                    return Results.BadRequest();
+                    return Results.BadRequest("Não  foi fornecido nenhum autor");
                 }
 
                 try
@@ -99,7 +99,7 @@ namespace BibliotecaAPI.Endpoints
 
                 if(deleted is null)
                 {
-                    return Results.NotFound();
+                    return Results.NotFound("Não foi encotrado nenhum autor correspondente ao Id fornecido na requisição");
                 }
 
 

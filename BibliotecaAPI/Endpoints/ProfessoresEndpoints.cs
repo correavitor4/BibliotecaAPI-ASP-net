@@ -57,7 +57,7 @@ namespace BibliotecaAPI.Endpoints
 
                 if(professor is null)
                 {
-                    return Results.BadRequest();
+                    return Results.BadRequest("Não foi fornecido nenhum professor");
                 }
                
                 try
@@ -109,7 +109,7 @@ namespace BibliotecaAPI.Endpoints
                 var deleted = con.Get<Professores>(id);
                 if(deleted is null)
                 {
-                    return Results.NotFound();
+                    return Results.NotFound("Nenhum professor foi informado");
                 }
 
                 try
